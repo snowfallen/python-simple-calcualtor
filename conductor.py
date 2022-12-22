@@ -1,7 +1,7 @@
 import dialog
 import operations
 
-variables_list = []
+numbers_list = []
 
 
 def run():
@@ -21,9 +21,9 @@ def processing():
     elif operation == '4':
         result(operations.divide(get_many_variables()))
     elif operation == '5':
-        result(operations.exponent(get_one_variable()))
-    elif operation == '6':
         result(operations.square(get_one_variable()))
+    elif operation == '6':
+        result(operations.sqrt(get_one_variable()))
     elif operation == '7':
         result(operations.cos(get_one_variable()))
     elif operation == '8':
@@ -38,29 +38,31 @@ def processing():
 
 
 def get_one_variable():
-    variable = dialog.get_variables()
-    if variable == '0':
+    print("For this operation, You must write only 1 number")
+    number = dialog.input_numbers()
+    if number == '0':
         print("You can't write zero, because ist provide an error")
         return get_one_variable()
-    elif variable != '':
-        variables_list.append(int(variable))
-        return variables_list
+    elif number != '':
+        numbers_list.append(int(number))
+        return numbers_list
     else:
         print("Invalid number")
         get_one_variable()
 
 
 def get_many_variables():
-    variable = dialog.get_variables()
-    if variable == '0':
+    print("For this operation, You must write minimum 2 numbers")
+    number = dialog.input_numbers()
+    if number == '0':
         print("You can't write zero, because ist provide an error")
         return get_many_variables()
-    elif variable != '':
-        variables_list.append(int(variable))
+    elif number != '':
+        numbers_list.append(int(number))
         return get_many_variables()
     else:
-        if len(variables_list) <= 1:
+        if len(numbers_list) <= 1:
             print('Invalid numbers. You must write minimum 2 numbers')
             return get_many_variables()
         else:
-            return variables_list
+            return numbers_list

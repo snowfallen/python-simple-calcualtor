@@ -20,8 +20,9 @@ def get_operation():
     return input('Write what do you want to do? \n')
 
 
-def get_variables():
-    return input('Write number... \n')
+def input_numbers():
+    return input('You can write only numbers, if you try write a letter or symbol its provide an error\n'
+                 'Write number... \n')
 
 
 def get_result(result):

@@ -1,53 +1,53 @@
 import math
 
 
-def addition(variables):
-    result = variables[0]
-    for variable in variables[1:]:
-        result += variable
+def addition(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result += number
     return result
 
 
-def subtract(variables):
-    result = variables[0]
-    for variable in variables[1:]:
-        result -= variable
+def subtract(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result -= number
     return result
 
 
-def multiply(variables):
-    result = variables[0]
-    for variable in variables[1:]:
-        result *= variable
+def multiply(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result *= number
     return result
 
 
-def divide(variables):
-    result = variables[0]
-    for variable in variables[1:]:
-        result /= variable
+def divide(numbers):
+    result = numbers[0]
+    for number in numbers[1:]:
+        result /= number
     return result
 
 
-def exponent(variables):
-    return variables[0] ** 2
+def square(numbers):
+    return numbers[0] ** numbers[0]
 
 
-def square(variables):
-    return math.sqrt(variables[0])
+def sqrt(numbers):
+    return math.sqrt(numbers[0])
 
 
-def cos(variables):
-    return math.cos(variables[0])
+def cos(numbers):
+    return math.cos(numbers[0])
 
 
-def sin(variables):
-    return math.sin(variables[0])
+def sin(numbers):
+    return math.sin(numbers[0])
 
 
-def tan(variables):
-    return math.tan(variables[0])
+def tan(numbers):
+    return math.tan(numbers[0])
 
 
-def cot(variables):
-    return math.cos(variables[0]) / math.sin(variables[0])
+def cot(numbers):
+    return math.cos(numbers[0]) / math.sin(numbers[0])
