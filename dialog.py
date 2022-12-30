@@ -1,22 +1,21 @@
+import operations
+
+
 def greetings():
     print("Hi, I'm Calculator.\n")
 
 
 def print_operations_list():
-    print("At this moment you can: \n "
-          "Additional, write 1 \n "
-          "Subtract, write 2\n "
-          "Multiply, write 3\n "
-          "Divide, write 4\n "
-          "Exponent, write 5\n "
-          "Square, write 6\n "
-          "Cosines, write 7\n "
-          "Sinus, write 8\n "
-          "Tangents, write 9\n "
-          "Cotangents, write 0\n ")
+    print("At this moment you can: \n ")
+    operations_dictionary = operations.operations_dictionary
+
+    for operation in operations_dictionary:
+        operation_name = operations_dictionary[operation]['operation_name']
+        operation_key = operations_dictionary[operation]['operation_key']
+        print(f"{operation_name} - for this operation input {operation_key}, and press Enter")
 
 
-def get_operation():
+def input_operation():
     return input('Write what do you want to do? \n')
 
 

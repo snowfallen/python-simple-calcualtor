@@ -2,67 +2,51 @@ import dialog
 import operations
 
 numbers_list = []
+operation_data_list = {}
 
 
 def run():
     dialog.print_operations_list()
+    get_operation()
     processing()
 
 
 def processing():
-    operation = dialog.get_operation()
     result = dialog.get_result
-    if operation == '1':
-        result(operations.addition(get_many_variables()))
-    elif operation == '2':
-        result(operations.subtract(get_many_variables()))
-    elif operation == '3':
-        result(operations.multiply(get_many_variables()))
-    elif operation == '4':
-        result(operations.divide(get_many_variables()))
-    elif operation == '5':
-        result(operations.square(get_one_variable()))
-    elif operation == '6':
-        result(operations.sqrt(get_one_variable()))
-    elif operation == '7':
-        result(operations.cos(get_one_variable()))
-    elif operation == '8':
-        result(operations.sin(get_one_variable()))
-    elif operation == '9':
-        result(operations.tan(get_one_variable()))
-    elif operation == '0':
-        result(operations.cot(get_one_variable()))
-    else:
-        print('Invalid operation. Please try again!')
-        run()
+    get_variables()
+    operation_function = operation_data_list['operation_function']
+    result(operation_function(numbers_list))
 
 
-def get_one_variable():
-    print("For this operation, You must write only 1 number")
+def get_operation():
+    operations_dictionary = operations.operations_dictionary
+    operation = dialog.input_operation()
+    for operation_dictionary in operations_dictionary:
+        operation_key = operations_dictionary[operation_dictionary]['operation_key']
+        if operation == operation_key:
+            operation_data_list['operation_rule'] = operations_dictionary[operation_dictionary]['operation_rule']
+            operation_data_list['operation_function'] = operations_dictionary[operation_dictionary]['operation']
+
+
+def get_variables():
+    operation_rule = operation_data_list['operation_rule']
+    print(operation_rule)
+
+    if len(numbers_list) >= 2:
+        print('For getting result just pres ENTER')
+
     number = dialog.input_numbers()
+
     if number == '0':
         print("You can't write zero, because ist provide an error")
-        return get_one_variable()
+        return get_variables()
     elif number != '':
-        numbers_list.append(int(number))
-        return numbers_list
-    else:
-        print("Invalid number")
-        get_one_variable()
-
-
-def get_many_variables():
-    print("For this operation, You must write minimum 2 numbers")
-    number = dialog.input_numbers()
-    if number == '0':
-        print("You can't write zero, because ist provide an error")
-        return get_many_variables()
-    elif number != '':
-        numbers_list.append(int(number))
-        return get_many_variables()
-    else:
-        if len(numbers_list) <= 1:
+        numbers_list.append(float(number))
+        return get_variables()
+    elif number == '':
+        if operation_rule == operations.VARIABLES_OPERATION_RULE and len(numbers_list) <= 1:
             print('Invalid numbers. You must write minimum 2 numbers')
-            return get_many_variables()
-        else:
-            return numbers_list
+            get_variables()
+        elif operation_rule == operations.VARIABLE_OPERATION_RULE or (
+                operation_rule == operations.VARIABLES_OPERATION_RULE and len(numbers_list) >= 2):
+            return
